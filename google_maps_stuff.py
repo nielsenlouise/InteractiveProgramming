@@ -6,10 +6,10 @@ from bokeh.models import (
   GMapPlot, GMapOptions, ColumnDataSource, Circle, DataRange1d, PanTool, WheelZoomTool, BoxSelectTool
 )
 
-map_options = GMapOptions(lat=42.3601, lng=-71.0589, map_type="roadmap", zoom=9)
+map_options = GMapOptions(lat=42.3601, lng=-71.0589, map_type="hybrid", zoom=9)
 
 plot = GMapPlot(
-    x_range=DataRange1d(), y_range=DataRange1d(), map_options=map_options, title="Austin"
+    x_range=DataRange1d(), y_range=DataRange1d(), map_options=map_options, title="Massachusetts"
 )
 
 # source = ColumnDataSource(
