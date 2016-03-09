@@ -6,7 +6,7 @@ from bokeh.models import (
   GMapPlot, GMapOptions, ColumnDataSource, Circle, DataRange1d, PanTool, WheelZoomTool, BoxSelectTool
 )
 
-map_options = GMapOptions(lat=42.3601, lng=-71.0589, map_type="hybrid", zoom=9)
+map_options = GMapOptions(lat=42.3601, lng=-71.0589, map_type="roadmap", zoom=9)
 
 plot = GMapPlot(
     x_range=DataRange1d(), y_range=DataRange1d(), map_options=map_options, title="Massachusetts"
@@ -19,19 +19,22 @@ plot = GMapPlot(
 #    )
 # )
 
-source = plotColumnDataSource(data=dict(
+data=dict(
     x=[-71.0589, -71.2644],
     y=[42.3601, 42.2926],
     name=['Boston', 'Olin'],
     address=['Boston Rite Aid', 'Olin The Awesomest']
-))
+)
+source = plotColumnDataSource(data)
 
-circle = Circle(x="x", y="y", size=15, fill_color="blue", fill_alpha=0.8, line_color=None)
+colormap = {'Boston': 'blue', 'Olin': 'green'}
+colors = {colormap[x] for x in data['name']}
+circle = Circle(x="x", y="y", size=15, fill_color=colors, fill_alpha=0.8)
 plot.add_glyph(source, circle)
 
-TOOLS="pan,wheel_zoom,box_zoom,reset,hover,save"
+# TOOLS="pan,wheel_zoom,box_zoom,reset,hover,save"
 
-p = figure(title="Our Map", tools=TOOLS)
+# p = figure(title="Our Map", tools=TOOLS)
 
 plot.add_tools(PanTool(), WheelZoomTool(), BoxSelectTool(), HoverTool())
 
