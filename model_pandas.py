@@ -17,7 +17,9 @@ class Model(object):
         else:
             self.frame = frame
 
-    def set_color_stuff(self):
+    def set_color(self):
+      """Sets colors for each glyph based on category. Defines attributes for each glyph.
+      """
         colormap = {'health': 'red',
                     'support': 'green',
                     'housing': 'blue',
@@ -40,5 +42,5 @@ class Model(object):
 
 if __name__ == '__main__':
     thing = Model()
-    thing.set_color_stuff
+    thing.set_color
     print thing.frame

@@ -1,5 +1,10 @@
-"""This file contains a lot of things. One of them will be a View class. Maybe
-there will also be other classes.
+"""
+This part of the code comprises the view portion of model-view-controller.
+It takes in a model, which is a pandas dataframe with information about resources for queer youth in MA.
+It outputs an interactive map using Bokeh.
+
+@author: Louise Nielsen and Apurva Raman
+         nielsenlouise@github.com, apurvaraman@github.com
 """
 
 from bokeh.models.widgets import CheckboxButtonGroup
@@ -22,7 +27,6 @@ red_glyph = Circle(size=15, fill_color='red', fill_alpha=.8)
 class Make_plot(object):
     """Draws a plot. View does everything else, this is just there so that the
     plot does not have to be redrawn every time something is filtered.
-    Hopefully.
     """
 
     def __init__(self, plot=None, map_type='roadmap', title='Resources'):
@@ -43,7 +47,7 @@ class Make_plot(object):
 
 
 class View(object):
-    """Puts things from Model() on top of the nice map it got from Make_plot().
+    """Puts information from Model() on top of the nice gmap it got from Make_plot().
     """
 
     def __init__(self, filename='test.csv', model=None, plot=None, button=None):
@@ -64,6 +68,8 @@ class View(object):
             self.button = button
 
     def marker(self):
+      """Defines a marker (a circle glyph) to represent a resource on the map.
+      """
         self.model.set_color()
         circle = Circle(x='lon', y='lat', size=15, fill_color='color', fill_alpha=.8)
         self.plot.add_glyph(self.model.source, circle)
@@ -98,6 +104,8 @@ class View(object):
         pass
 
     def show_plot(self):
+      """Outputs and displays a plot on a static webpage.
+      """
         self.marker()
         self.hover_tool()
 #        self.legend()
