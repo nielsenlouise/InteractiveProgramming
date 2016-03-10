@@ -2,7 +2,7 @@
 there will also be other classes.
 """
 
-from bokeh.plotting import ColumnDataSource as plotColumnDataSource
+from bokeh.models.widgets import CheckboxButtonGroup
 from bokeh.models import (GMapPlot,
                           GMapOptions,
                           DataRange1d,
@@ -10,9 +10,13 @@ from bokeh.models import (GMapPlot,
                           PanTool,
                           WheelZoomTool,
                           BoxSelectTool,
-                          HoverTool)
+                          HoverTool,
+                          Legend)
 from bokeh.io import show, output_file
 import model_pandas as mdl
+
+# let's define glyphs
+red_glyph = Circle(size=15, fill_color='red', fill_alpha=.8)
 
 
 class Make_plot(object):
@@ -42,7 +46,7 @@ class View(object):
     """Puts things from Model() on top of the nice map it got from Make_plot().
     """
 
-    def __init__(self, filename='test.csv', model=None, plot=None):
+    def __init__(self, filename='test.csv', model=None, plot=None, button=None):
         self.filename = filename
         if model is None:
             self.model = mdl.Model(self.filename)
@@ -53,11 +57,27 @@ class View(object):
             self.plot = x.plot
         else:
             self.plot = plot
+        if button is None:
+            button = CheckboxButtonGroup(labels=['were trying', 'did we succeed'])
+            self.button = button
+        else:
+            self.button = button
 
     def marker(self):
         self.model.set_color_stuff()
         circle = Circle(x='lon', y='lat', size=15, fill_color='color', fill_alpha=.8)
         self.plot.add_glyph(self.model.source, circle)
+
+    def legend(self):
+        red_glyph = self.plot.add_glyph(self.model.source, Circle(x='lon', y='lat', size=15, fill_color='red', fill_alpha=.8))
+        Legend.legends = [
+            ('health', red_glyph)]
+#            ('support', green_glyph),
+#            ('housing', blue_glyph),
+#            ('advocacy', purple_glyph),
+#            ('legal', cyan_glyph)]
+        legend = Legend(location='bottom_left')
+        self.plot.add_layout(legend)
 
     def hover_tool(self):
         """Makes the hover tool! Woot!
@@ -67,12 +87,22 @@ class View(object):
         hover.tooltips = [('Name', '@name'),
                           ('Address', '@address')]
 
+    def buttons(self):
+        """Makes buttons appear.
+
+        Right now we're struggling with this because we probably have to use
+        either a server or callbacks, one of which is being difficult and also
+        one that involves a JS snippet.
+        """
+        pass
+
     def show_plot(self):
         self.marker()
         self.hover_tool()
+        self.legend()
+        self.buttons()
         output_file('resources_plot.html')
         show(self.plot)
-
 
 
 if __name__ == '__main__':

@@ -1,3 +1,11 @@
 Name,Lat,Lon,Address,Category
-Boston,42.3601,-71.0589,nope,health
-Olin College,42.2926,-71.2644,"1000 Olin Way, Needham, MA 02492",support
+Olin College,42.2926,-71.2644,"1000 Olin Way, Needham, MA 02492",housing
+"BAGLY, Inc",42.357716,-71.062384,"14 Beacon Street, Suite 620, Boston, MA 02108",advocacy
+"The Bridge of Central MA, Inc",42.261404,-71.827441,"4 Mann Street, Worcester, MA 01602",housing
+"Community Action of the Franklin, Hampshire and North Quabbin Regions - Youth Programs",42.5876,-72.598691,"393 Main Street, Greenfield, MA 01301",advocacy
+Health Imperatives,42.054669,-71.054591,"942 West Chestnut Street, Brockton, MA 02301",health
+Justice Resource Institute,42.354847,-71.062414,"25 West Street - 5th floor, Boston, MA 02111",support
+Massachusetts Asian AIDS Prevention Project,42.348575,-71.066334,"322 Tremont Street, Boston, MA 02116",health
+Out Now,42.103675,-72.594993,"32 Hampden Street, Springfield, MA 01103",support
+Youth on Fire,42.377929,-71.119691,"1555 Massachusetts Ave., Cambridge, MA 02138",housing
+GLBTQ Domestic Violence Project Legal Program,42.352181,-71.120632,"989 Commonwealth Ave., Boston, MA 02215",legal
