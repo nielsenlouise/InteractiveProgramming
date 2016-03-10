@@ -64,20 +64,20 @@ class View(object):
             self.button = button
 
     def marker(self):
-        self.model.set_color_stuff()
+        self.model.set_color()
         circle = Circle(x='lon', y='lat', size=15, fill_color='color', fill_alpha=.8)
         self.plot.add_glyph(self.model.source, circle)
 
-    def legend(self):
-        red_glyph = self.plot.add_glyph(self.model.source, Circle(x='lon', y='lat', size=15, fill_color='red', fill_alpha=.8))
-        Legend.legends = [
-            ('health', red_glyph)]
+#    def legend(self):
+#        red_glyph = self.plot.add_glyph(self.model.source, Circle(x='lon', y='lat', size=15, fill_color='red', fill_alpha=.8))
+#        Legend.legends = [
+#            ('health', red_glyph)]
 #            ('support', green_glyph),
 #            ('housing', blue_glyph),
 #            ('advocacy', purple_glyph),
 #            ('legal', cyan_glyph)]
-        legend = Legend(location='bottom_left')
-        self.plot.add_layout(legend)
+#        legend = Legend(location='bottom_left')
+#        self.plot.add_layout(legend)
 
     def hover_tool(self):
         """Makes the hover tool! Woot!
@@ -85,7 +85,8 @@ class View(object):
         hover = self.plot.select_one(HoverTool)
         hover.point_policy = 'follow_mouse'
         hover.tooltips = [('Name', '@name'),
-                          ('Address', '@address')]
+                          ('Address', '@address'),
+                          ('Type', '@category')]
 
     def buttons(self):
         """Makes buttons appear.
@@ -99,7 +100,7 @@ class View(object):
     def show_plot(self):
         self.marker()
         self.hover_tool()
-        self.legend()
+#        self.legend()
         self.buttons()
         output_file('resources_plot.html')
         show(self.plot)
