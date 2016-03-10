@@ -24,7 +24,7 @@ import model_pandas as mdl
 red_glyph = Circle(size=15, fill_color='red', fill_alpha=.8)
 
 
-class Make_plot(object):
+class MakePlot(object):
     """Draws a plot. View does everything else, this is just there so that the
     plot does not have to be redrawn every time something is filtered.
     """
@@ -47,7 +47,7 @@ class Make_plot(object):
 
 
 class View(object):
-    """Puts information from Model() on top of the nice gmap it got from Make_plot().
+    """Puts information from Model() on top of the nice gmap it got from MakePlot().
     """
 
     def __init__(self, filename='test.csv', model=None, plot=None, button=None):
@@ -57,7 +57,7 @@ class View(object):
         else:
             self.model = model
         if plot is None:
-            x = Make_plot()
+            x = MakePlot()
             self.plot = x.plot
         else:
             self.plot = plot
@@ -68,22 +68,31 @@ class View(object):
             self.button = button
 
     def marker(self):
-      """Defines a marker (a circle glyph) to represent a resource on the map.
-      """
+        """Defines a marker (a circle glyph) to represent a resource on the map.
+        """
         self.model.set_color()
         circle = Circle(x='lon', y='lat', size=15, fill_color='color', fill_alpha=.8)
         self.plot.add_glyph(self.model.source, circle)
 
-#    def legend(self):
-#        red_glyph = self.plot.add_glyph(self.model.source, Circle(x='lon', y='lat', size=15, fill_color='red', fill_alpha=.8))
-#        Legend.legends = [
-#            ('health', red_glyph)]
-#            ('support', green_glyph),
-#            ('housing', blue_glyph),
-#            ('advocacy', purple_glyph),
-#            ('legal', cyan_glyph)]
-#        legend = Legend(location='bottom_left')
-#        self.plot.add_layout(legend)
+    def legend(self):
+        """Defines and adds to plot a legend that describes what type of
+        resource each color glyph maps to.
+
+        We did not have time to fully implement this before the due date.
+        The legend object would appear but would be empty.
+        """
+        """
+        red_glyph = self.plot.add_glyph(self.model.source, Circle(x='lon', y='lat', size=15, fill_color='red', fill_alpha=.8))
+        Legend.legends = [
+            ('health', red_glyph)]
+            ('support', green_glyph),
+            ('housing', blue_glyph),
+            ('advocacy', purple_glyph),
+            ('legal', cyan_glyph)]
+        legend = Legend(location='bottom_left')
+        self.plot.add_layout(legend)
+        """
+        pass  # TODO: Implement this
 
     def hover_tool(self):
         """Makes the hover tool! Woot!
@@ -101,11 +110,11 @@ class View(object):
         either a server or callbacks, one of which is being difficult and also
         one that involves a JS snippet.
         """
-        pass
+        pass  # TODO: Implement this.
 
     def show_plot(self):
-      """Outputs and displays a plot on a static webpage.
-      """
+        """Outputs and displays a plot on a static webpage.
+        """
         self.marker()
         self.hover_tool()
 #        self.legend()

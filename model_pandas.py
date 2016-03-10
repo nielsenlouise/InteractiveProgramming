@@ -1,4 +1,10 @@
-"""This file contains the model class using the pandas library (hooray!)
+"""
+This part of the code comprises the model portion of model-view-controller.
+It takes in a filename, which is a csv file with information about resources for queer youth in MA.
+It outputs a pandas DataFrame.
+
+@author: Louise Nielsen and Apurva Raman
+         nielsenlouise@github.com, apurvaraman@github.com
 """
 
 from pandas import *
@@ -18,8 +24,8 @@ class Model(object):
             self.frame = frame
 
     def set_color(self):
-      """Sets colors for each glyph based on category. Defines attributes for each glyph.
-      """
+        """Sets colors for each glyph based on category. Defines attributes for each glyph.
+        """
         colormap = {'health': 'red',
                     'support': 'green',
                     'housing': 'blue',
@@ -37,8 +43,11 @@ class Model(object):
 
     def update_model(self):
         """This is going to update the model, probably has to filter things.
+
+        We did not have time before the due date to implement buttons and
+        filtering, which was the intent of this.
         """
-        pass
+        pass  # TODO: Implement this.
 
 if __name__ == '__main__':
     thing = Model()
