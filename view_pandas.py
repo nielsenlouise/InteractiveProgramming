@@ -70,7 +70,7 @@ class View(object):
     def marker(self):
       """Defines a marker (a circle glyph) to represent a resource on the map.
       """
-        self.model.set_color_stuff()
+        self.model.set_color()
         circle = Circle(x='lon', y='lat', size=15, fill_color='color', fill_alpha=.8)
         self.plot.add_glyph(self.model.source, circle)
 
