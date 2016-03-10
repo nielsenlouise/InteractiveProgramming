@@ -1,2 +1,5 @@
 # InteractiveProgramming
-This is the base repo for the interactive programming project for Software Design, Spring 2016 at Olin College.
+This is the repo for an interactive map of queer resources in Massachusetts.
+To run:
+Have view_pandas.py, model_pandas.py, and test.csv in the same directory.
+Run view_pandas.py.
